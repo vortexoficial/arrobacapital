@@ -1,0 +1,492 @@
+:root {
+    /* Colors - Brand Palette (Same as main project) */
+    --forest-900: #0B2E1E;
+    --forest-800: #0E3A25;
+    --forest-700: #145233;
+    --forest-600: #1A6B42;
+    
+    --gold-600:   #A68A45;
+    --gold-500:   #C8A45A;
+    --gold-400:   #D9B66D;
+    --gold-300:   #EBD299;
+    
+    --cream-100:  #F5F1E8;
+    --cream-200:  #E8E2D2;
+    
+    --text-900:   #112018;
+    --text-body:  #3A4A40;
+    --text-light: #F7F7F5;
+    --text-muted: #8AA395;
+    
+    --accent:     #2F7A45;
+    --error:      #D32F2F;
+    --success:    #388E3C;
+    
+    --font-heading: 'Cinzel', serif;
+    --font-body:    'Manrope', sans-serif;
+    
+    --radius-md: 12px;
+    --radius-lg: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--forest-900); /* Dark background for immersive feel */
+    color: var(--text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.app-container {
+    background-color: var(--cream-100);
+    color: var(--text-900);
+    width: 100%;
+    max-width: 600px;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 90vh; /* Fixed height for app-like feel */
+    max-height: 800px;
+}
+
+/* Header */
+.quiz-header {
+    padding: 20px 30px;
+    background: var(--forest-900);
+    color: var(--cream-100);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--gold-500);
+}
+
+.brand {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.text-gold { color: var(--gold-500); }
+
+.step-indicator {
+    font-size: 0.9rem;
+    color: var(--gold-400);
+}
+
+/* Progress Bar */
+.progress-container {
+    height: 6px;
+    background-color: var(--forest-800);
+    width: 100%;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--gold-500);
+    width: 0%;
+    transition: width 0.4s ease;
+}
+
+/* Form Area */
+.quiz-form {
+    flex: 1;
+    overflow-y: auto; /* Scrollable content area */
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-step {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.form-step.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.step-title {
+    font-family: var(--font-heading);
+    color: var(--forest-900);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.step-subtitle {
+    color: var(--text-body);
+    margin-bottom: 30px;
+    font-size: 1rem;
+}
+
+/* Inputs */
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group label:not(.option-card) {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--forest-800);
+    font-size: 0.95rem;
+}
+
+/* Floating Labels Styling */
+.floating-label {
+    position: relative;
+    margin-bottom: 25px; /* Spacing between inputs */
+}
+
+.floating-label input {
+    width: 100%;
+    padding: 16px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    background-color: #fff;
+    transition: all 0.2s ease-in-out;
+    outline: none;
+    height: 56px;
+}
+
+/* Label Position (Init) */
+.floating-label label {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: rgba(138, 163, 149, 0.7);
+    pointer-events: none;
+    transition: 0.2s ease all;
+    background-color: transparent;
+    padding: 0 4px;
+}
+
+/* Focused or Filled (Float Up) */
+.floating-label input:focus + label,
+.floating-label input:not(:placeholder-shown) + label {
+    top: 0;
+    left: 10px;
+    font-size: 0.75rem;
+    color: var(--gold-600);
+    background: #fff;
+    height: auto;
+    padding: 2px 8px;
+    z-index: 10;
+    border: 1px solid var(--gold-300);
+    border-radius: 999px;
+    
+    /* Better alignment on border */
+    transform: translateY(-50%);
+    font-weight: 700;
+}
+
+.floating-label input:focus,
+.floating-label input:not(:placeholder-shown) {
+    border-color: var(--gold-500);
+    box-shadow: 0 0 0 2px rgba(200, 164, 90, 0.1);
+}
+
+
+.input-group input[type="text"]:not(.floating-label input),
+.input-group input[type="email"]:not(.floating-label input),
+.input-group input[type="tel"]:not(.floating-label input) {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    background-color: #fff;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus:not(.floating-label input) {
+    outline: none;
+    border-color: var(--forest-600);
+    box-shadow: 0 0 0 3px rgba(11, 46, 30, 0.1);
+}
+
+/* Radio Cards */
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.options-container.horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.option-card {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid rgba(17, 32, 24, 0.12);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+    position: relative;
+    user-select: none;
+}
+
+.option-card:hover {
+    background-color: #fff;
+    border-color: var(--gold-300);
+    box-shadow: none;
+}
+
+.option-card input[type="radio"],
+.option-card input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+    border: 1px solid rgba(17, 32, 24, 0.22);
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: none;
+    outline: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.option-card input[type="radio"]:checked,
+.option-card input[type="checkbox"]:checked {
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--gold-400) 0%, var(--gold-600) 100%);
+}
+
+/* Card Selection State - Handled by JS adding class later if needed, 
+   but :checked handles basic styling too */
+
+.option-card:has(input:checked) {
+    background-color: #fff;
+    border-color: rgba(17, 32, 24, 0.12);
+    box-shadow: none;
+    transform: none;
+}
+
+.option-text {
+    font-size: 0.95rem;
+    color: var(--text-body);
+}
+
+.checkbox-card {
+    align-items: flex-start;
+}
+
+.checkbox-card input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    margin-top: 3px;
+    border-radius: 7px;
+    flex-shrink: 0;
+}
+
+.checkbox-card input[type="checkbox"]:checked {
+    background: linear-gradient(135deg, var(--gold-400) 0%, var(--gold-600) 100%);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M4 10l4 4 8-8' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"), linear-gradient(135deg, var(--gold-400) 0%, var(--gold-600) 100%);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 12px 12px, 100% 100%;
+}
+
+/* Navigation */
+.form-navigation {
+    margin-top: auto;
+    padding: 20px 30px;
+    background: transparent; /* Clean look */
+    border-top: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    
+    /* Adjust margins to align with content */
+    margin: 0 -30px -30px -30px;
+    width: calc(100% + 60px);
+    box-sizing: border-box;
+    /* Gradient fade for content scrolling under */
+    background: linear-gradient(to top, var(--cream-100) 80%, rgba(245, 241, 232, 0));
+}
+
+/* Adjust footer placement: inside app-container */
+.quiz-form {
+    padding-bottom: 0; /* Clear padding for sticky footer */
+}
+
+.btn {
+    padding: 14px 28px; /* Larger touch target */
+    border-radius: 50px; /* Pill shape */
+    font-weight: 700;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-size: 1rem;
+    border: none;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.btn:active {
+    transform: scale(0.96);
+}
+
+.btn:disabled {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-muted);
+    font-weight: 600;
+    box-shadow: none;
+    padding-left: 0; /* Align left */
+}
+
+.btn-secondary:hover:not(:disabled) {
+    color: var(--forest-800);
+    background: transparent;
+    transform: translateX(-4px);
+}
+
+.btn-primary {
+    /* Gradient based on Forest Brand Colors */
+    background: linear-gradient(135deg, var(--forest-700) 0%, var(--forest-900) 100%);
+    color: var(--gold-400); 
+    margin-left: auto;
+    box-shadow: 0 8px 20px rgba(11, 46, 30, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--forest-600) 0%, var(--forest-800) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(11, 46, 30, 0.4);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Success Screen */
+.success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+    height: 100%;
+    animation: fadeIn 0.5s ease;
+}
+
+.success-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(200, 164, 90, 0.1);
+    margin-bottom: 20px;
+}
+
+.success-container h2 {
+    font-family: var(--font-heading);
+    color: var(--forest-900);
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+.success-container p {
+    color: var(--text-body);
+    font-size: 1.1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.success-btn {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Validation Effects */
+.shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+.input-error {
+    border-color: var(--error) !important;
+    background-color: #fff8f8 !important;
+}
+
+/* Mobile Tweaks */
+@media (max-width: 480px) {
+    body {
+        padding: 0;
+        align-items: flex-start;
+        background: var(--cream-100);
+    }
+    
+    .app-container {
+        height: 100vh;
+        max-height: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    
+    .step-title {
+        font-size: 1.5rem;
+    }
+    
+    .quiz-header {
+        padding: 15px 20px;
+    }
+    
+    .quiz-form {
+        padding: 20px;
+    }
+    
+    .form-navigation {
+        padding: 15px 20px;
+        margin: 0 -20px -20px -20px;
+        width: calc(100% + 40px);
+    }
+
+    .options-container.horizontal {
+        flex-direction: column;
+    }
+}

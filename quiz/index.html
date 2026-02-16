@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Perfil | Arroba Capital</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <header class="quiz-header">
+            <span class="brand">ARROBA <span class="text-gold">CAPITAL</span></span>
+            <span class="step-indicator">Passo <span id="current-step">1</span> de <span id="total-steps">5</span></span>
+        </header>
+
+        <form id="profile-form" class="quiz-form">
+            
+            <!-- Step 1: Dados Pessoais -->
+            <div class="form-step active" data-step="1">
+                <h2 class="step-title">Vamos começar pelo básico</h2>
+                <p class="step-subtitle">Precisamos te conhecer para personalizar sua experiência.</p>
+                
+                <div class="input-group floating-label">
+                    <input type="text" id="name" name="name" placeholder=" " required>
+                    <label for="name">Nome completo</label>
+                </div>
+                
+                <div class="input-group floating-label">
+                    <input type="email" id="email" name="email" placeholder=" " required>
+                    <label for="email">Seu melhor e-mail</label>
+                </div>
+
+                <div class="input-group floating-label">
+                    <input type="tel" id="phone" name="phone" placeholder=" " maxlength="15" required>
+                    <label for="phone">Número de celular com Whatsapp</label>
+                </div>
+
+                <div class="input-group floating-label">
+                    <input type="text" id="city" name="city" placeholder=" " required>
+                    <label for="city">Cidade/estado onde mora</label>
+                </div>
+            </div>
+
+            <!-- Step 2: Agro Knowledge -->
+            <div class="form-step" data-step="2">
+                <h2 class="step-title">Sua Experiência</h2>
+                <div class="input-group">
+                    <label>Você tem algum conhecimento na área do agronegócio?</label>
+                    <div class="options-container">
+                        <label class="option-card">
+                            <input type="radio" name="agro_knowledge" value="bastante" required>
+                            <span class="option-text">Tenho bastante conhecimento</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="agro_knowledge" value="raso" required>
+                            <span class="option-text">Tenho um conhecimento raso no assunto</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="agro_knowledge" value="nenhum" required>
+                            <span class="option-text">Não tenho conhecimento</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Current Investments -->
+            <div class="form-step" data-step="3">
+                <h2 class="step-title">Sua Experiência</h2>
+                <div class="input-group">
+                    <label>Você já investe em algum ativo?</label>
+                    <div class="options-container">
+                        <label class="option-card">
+                            <input type="radio" name="current_investments" value="imoveis" required>
+                            <span class="option-text">Sim, em imóveis</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="current_investments" value="renda_fixa" required>
+                            <span class="option-text">Sim, em renda fixa (CDB, Tesouro, etc.)</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="current_investments" value="acoes_cripto" required>
+                            <span class="option-text">Sim, em ações e/ou criptomoedas</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="current_investments" value="comercio_local" required>
+                            <span class="option-text">Sim, em comércio local</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="current_investments" value="nao_invisto" required>
+                            <span class="option-text">Ainda não invisto</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="current_investments" value="multiplos" required>
+                            <span class="option-text">Mais de uma opção</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Investment Amount -->
+            <div class="form-step" data-step="4">
+                <h2 class="step-title">Planejamento Financeiro</h2>
+                <div class="input-group">
+                    <label>Quanto você pretende investir</label>
+                    <div class="options-container">
+                        <label class="option-card">
+                            <input type="radio" name="investment_amount" value="30k-50k" required>
+                            <span class="option-text">Entre R$ 30.000 e R$ 50.000</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="investment_amount" value="50k-100k" required>
+                            <span class="option-text">Entre R$ 50.000 e R$ 100.000</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="investment_amount" value="100k-200k" required>
+                            <span class="option-text">Entre R$ 100.000 e R$ 200.000</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="investment_amount" value="200k+" required>
+                            <span class="option-text">Acima de R$ 200.000</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Capital Source -->
+            <div class="form-step" data-step="5">
+                <h2 class="step-title">Planejamento Financeiro</h2>
+                <div class="input-group">
+                    <label>Este capital é</label>
+                    <div class="options-container">
+                        <label class="option-card">
+                            <input type="radio" name="capital_source" value="reserva" required>
+                            <span class="option-text">Reserva financeira</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="capital_source" value="carteira" required>
+                            <span class="option-text">Parte da carteira de investimentos</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="capital_source" value="curto_prazo" required>
+                            <span class="option-text">Capital que precisará resgatar no curto prazo</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Goal -->
+            <div class="form-step" data-step="6">
+                <h2 class="step-title">Alinhamento de Expectativas</h2>
+                <div class="input-group">
+                    <label>Qual seu principal objetivo com esse investimento?</label>
+                    <div class="options-container">
+                        <label class="option-card">
+                            <input type="radio" name="goal" value="crescimento" required>
+                            <span class="option-text">Crescimento patrimonial</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="goal" value="diversificacao" required>
+                            <span class="option-text">Diversificação</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="goal" value="retorno" required>
+                            <span class="option-text">Ter retorno maior que banco/poupança</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="goal" value="mercado_agro" required>
+                            <span class="option-text">Entrar no mercado do agronegócio com segurança</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="goal" value="renda_recorrente" required>
+                            <span class="option-text">Renda recorrente</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 7: Term -->
+            <div class="form-step" data-step="7">
+                <h2 class="step-title">Alinhamento de Expectativas</h2>
+                <div class="input-group">
+                    <label>Qual prazo mínimo você considera adequado para manter o capital investido?</label>
+                    <div class="options-container">
+                        <label class="option-card">
+                            <input type="radio" name="term" value="2-3m" required>
+                            <span class="option-text">2 a 3 meses</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="term" value="4-6m" required>
+                            <span class="option-text">4 a 6 meses</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="term" value="6-12m" required>
+                            <span class="option-text">6 a 12 meses</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="term" value="longo" required>
+
+                            <span class="option-text">Longo prazo</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 8: Risk Understanding -->
+            <div class="form-step" data-step="8">
+                <h2 class="step-title">Últimos Detalhes</h2>
+                <div class="input-group">
+                    <label>Você compreende que se trata de um investimento ligado ao agronegócio, sujeito a oscilação de mercado?</label>
+                    <div class="options-container horizontal">
+                        <label class="option-card">
+                            <input type="radio" name="risk_understanding" value="sim" required>
+                            <span class="option-text">Sim</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="risk_understanding" value="nao" required>
+                            <span class="option-text">Não</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 9: Report Preference -->
+            <div class="form-step" data-step="9">
+                <h2 class="step-title">Últimos Detalhes</h2>
+                <div class="input-group">
+                    <label>Como prefere receber os relatórios de atualização?</label>
+                    <div class="options-container">
+                        <label class="option-card">
+                            <input type="radio" name="report_preference" value="whatsapp" required>
+                            <span class="option-text">Via whatsapp</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="report_preference" value="email" required>
+                            <span class="option-text">E-mail</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="report_preference" value="ambos" required>
+                            <span class="option-text">Ambos</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 10: Schedule Call -->
+            <div class="form-step" data-step="10">
+                <h2 class="step-title">Últimos Detalhes</h2>
+                <div class="input-group">
+                    <label>Você gostaria de agendar uma conversa para entender melhor a operação?</label>
+                    <div class="options-container horizontal">
+                        <label class="option-card">
+                            <input type="radio" name="schedule_call" value="sim" required>
+                            <span class="option-text">Sim</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="schedule_call" value="nao" required>
+                            <span class="option-text">Não</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 11: Final Submission -->
+            <div class="form-step" data-step="11">
+                <h2 class="step-title">Finalização</h2>
+                
+                <div class="input-group">
+                    <label>Alguma dúvida ou comentário?</label>
+                    <input type="text" name="comments" placeholder="Sua resposta">
+                </div>
+                
+                <div class="input-group declaration">
+                    <label class="option-card checkbox-card">
+                        <input type="checkbox" name="declaration" value="concordo" required>
+                        <span class="option-text">Declaro que as informações acima são verdadeiras e que compreendo que este formulário tem caráter exclusivamente informativo e de análise de perfil</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="form-navigation">
+                <button type="button" id="prev-btn" class="btn btn-secondary" disabled>Voltar</button>
+                <button type="button" id="next-btn" class="btn btn-primary">Continuar</button>
+                <button type="submit" id="submit-btn" class="btn btn-primary hidden">Enviar Formulário</button>
+            </div>
+            
+        </form>
+        
+        <!-- Success Message -->
+        <div id="success-screen" class="success-container hidden">
+            <div class="success-icon">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#C8A45A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <h2>Obrigado!</h2>
+            <p>Recebemos suas informações. Nossa equipe de especialistas analisará seu perfil e entrará em contato em breve.</p>
+            <a href="../index.html" class="btn btn-primary success-btn" style="display:inline-block; margin-top:20px; text-decoration:none;">Voltar ao Início</a>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
