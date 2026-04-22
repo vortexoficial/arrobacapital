@@ -10,10 +10,14 @@
     <meta property="og:description" content="Participe de operações estruturadas na pecuária de corte com acompanhamento técnico e visão clara. Aportes a partir de R$ 30.000.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://arrobacapital.com.br">
-    <meta property="og:image" content="assets/og-image-placeholder.jpg">
+    <meta property="og:image" content="https://arrobacapital.com.br/logo.webp">
     
     <title>Arroba Capital | Investimentos Pecuários de Alta Performance</title>
     
+    <script>
+        document.documentElement.classList.add('has-loader');
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,9 +25,12 @@
     
     <!-- CSS Principal -->
     <link rel="stylesheet" href="css/main.css">
+    <link rel="preload" as="image" href="logo.webp" fetchpriority="high">
     
     <!-- Favicon Placeholder -->
+    <link rel="icon" type="image/webp" href="logo.webp">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐂</text></svg>">
+    <link rel="icon" type="image/webp" href="logo.webp">
 
     <script type="application/ld+json">
     {
@@ -31,7 +38,7 @@
       "@type": "Organization",
       "name": "Arroba Capital",
       "url": "https://arrobacapital.com.br",
-      "logo": "https://arrobacapital.com.br/logo.png",
+      "logo": "https://arrobacapital.com.br/logo.webp",
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+55-11-99999-9999",
@@ -42,19 +49,31 @@
 </head>
 <body>
 
+    <div class="page-loader" id="page-loader" role="status" aria-live="polite" aria-label="Carregando Arroba Capital">
+        <div class="page-loader__inner">
+            <img src="logo.webp" alt="Arroba Capital" class="page-loader__logo">
+            <div class="page-loader__dots" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <span class="sr-only">Carregando o site da Arroba Capital.</span>
+        </div>
+    </div>
+
     <!-- Header Fixo -->
     <header class="header" id="header">
         <div class="container header__container">
-            <a href="#" class="header__logo" aria-label="Arroba Capital - Início">
-                ARROBA <span class="text-gold">CAPITAL</span>
+            <a href="#" class="header__logo" aria-label="Arroba Capital - Inicio">
+                <img src="logo.webp" alt="Arroba Capital" class="brand-logo brand-logo--header">
             </a>
             
             <nav class="header__nav" id="nav-menu">
                 <ul class="header__list">
                     <li><a href="#hero" class="header__link">Início</a></li>
-                    <li><a href="#como-funciona" class="header__link">Como Funciona</a></li>
-                    <li><a href="#diferenciais" class="header__link">Diferenciais</a></li>
-                    <li><a href="#transparencia" class="header__link">Transparência</a></li>
+                    <li><a href="#operacao" class="header__link">Como Funciona</a></li>
+                    <li><a href="#brasil" class="header__link">O Mercado</a></li>
+                    <li><a href="#depoimentos" class="header__link">Depoimentos</a></li>
                     <li><a href="#faq" class="header__link">FAQ</a></li>
                 </ul>
                 <a href="#pre-inscricao" class="btn btn--primary header__cta">Quero Participar</a>
@@ -75,46 +94,45 @@
             <div class="hero__overlay"></div>
             <div class="container hero__container">
                 <div class="hero__content">
-                    <span class="badge fade-up">Nova Rodada Aberta</span>
+                    <span class="badge fade-up">Participe do Próximo Ciclo</span>
                     <h1 class="hero__title fade-up delay-100">
-                        Invista no Agro <br>com <span class="text-gold">Estratégia</span>, Transparência e Gestão Profissional
+                        Invista no agronegócio que o Brasil <span class="text-gold">lidera o mundo</span>
                     </h1>
                     <p class="hero__subtitle fade-up delay-200">
-                        Participe de operações estruturadas na pecuária de corte com acompanhamento técnico e visão clara de cada ciclo produtivo.
+                        Acesso a ciclos pecuários com gado Nelore, gestão profissional e retorno proporcional ao seu aporte. <strong>Você investe. A Fazenda cuida.</strong>
                     </p>
-                    
+
                     <ul class="hero__bullets fade-up delay-300">
                         <li>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-gold" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 1v22"></path>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-gold" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
                                 <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                             </svg>
-                            Aportes a partir de R$ 30.000
+                            A partir de R$ 30.000
                         </li>
                         <li>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-gold" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-gold" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polyline points="12 6 12 12 16 14"></polyline>
-                                <path d="M12 2l2-2 2 2"></path> <!-- Leaf accent -->
                             </svg>
-                            Ciclos operacionais de 60 a 90 dias
+                            Ciclos de 60 a 90 dias
                         </li>
                         <li>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-gold" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="16" y1="2" x2="16" y2="6"></line>
-                                <line x1="8" y1="2" x2="8" y2="6"></line>
-                                <line x1="3" y1="10" x2="21" y2="10"></line>
-                                <path d="M9 16l2 2 4-4"></path>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-gold" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
-                            Relatórios periódicos exclusivos
+                            Operação 100% acompanhada
                         </li>
                     </ul>
 
                     <div class="hero__actions fade-up delay-400">
-                        <a href="#pre-inscricao" class="btn btn--primary btn--lg">Fazer Pré-inscrição</a>
-                        <a href="https://wa.me/5511999999999" target="_blank" class="btn btn--outline btn--lg">Falar no WhatsApp</a>
+                        <a href="#operacao" class="btn btn--primary btn--lg">Quero conhecer a operação</a>
                     </div>
+                </div>
+
+                <div class="hero__image fade-up delay-300">
+                    <img src="img.webp" alt="Operação pecuária Arroba Capital">
                 </div>
             </div>
             <div class="hero__scroll">
@@ -124,306 +142,239 @@
             </div>
         </section>
 
-        <!-- Seção Para Quem É -->
-        <section class="section target-audience" id="para-quem">
+        <!-- Seção Vídeo -->
+        <section class="section section--dark video-section" id="video">
+            <div class="container text-center">
+                <div class="section-header">
+                    <h2 class="section-title text-light">Conheça a Fazenda e a Operação</h2>
+                    <p class="section-subtitle" style="color: var(--text-muted);">Veja o funcionamento da operação e ouça quem já investiu.</p>
+                </div>
+                <div class="video-wrapper reveal-on-scroll">
+                    <div class="video-placeholder">
+                        <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="text-gold">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"></polygon>
+                        </svg>
+                        <p>Vídeo em breve</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Operação Pecuária -->
+        <section class="section operation-section" id="operacao">
             <div class="container">
                 <div class="section-header text-center">
-                    <h2 class="section-title">Para quem busca diversificação com <span class="text-accent">exposição ao agronegócio</span></h2>
-                    <p class="section-subtitle">Identifique seu perfil de investidor e entenda como a Arroba Capital pode compor seu portfólio.</p>
+                    <h2 class="section-title">Operação Pecuária Construída com <span class="text-accent">Experiência de Gerações</span></h2>
                 </div>
 
-                <div class="grid grid--2 target-audience__grid">
-                    <div class="card reveal-on-scroll">
-                        <div class="card__icon">
-                            <!-- Target/Money -->
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="text-gold" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <circle cx="12" cy="12" r="6"></circle>
-                                <circle cx="12" cy="12" r="2"></circle>
-                                <line x1="12" y1="22" x2="12" y2="18"></line>
-                            </svg>
-                        </div>
-                        <h3 class="card__title">Investidor Inteligente</h3>
-                        <p class="card__text">Busca alternativas à renda fixa tradicional e quer diversificar com ativos reais (biológicos) de alta demanda.</p>
-                    </div>
-                    <div class="card reveal-on-scroll delay-100">
-                        <div class="card__icon">
-                            <!-- Briefcase -->
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="text-gold" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                            </svg>
-                        </div>
-                        <h3 class="card__title">Profissionais Liberais</h3>
-                        <p class="card__text">Médicos, advogados e empresários que desejam investir no agro, mas não têm tempo para gerir fazendas.</p>
-                    </div>
-                    <div class="card reveal-on-scroll delay-200">
-                        <div class="card__icon">
-                            <!-- Pie Chart -->
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="text-gold" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
-                                <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="card__title">Diversificação Estratégica</h3>
-                        <p class="card__text">Para quem entende a força do PIB agro brasileiro e quer surfar ciclos curtos de engorda intensiva.</p>
-                    </div>
-                    <div class="card reveal-on-scroll delay-300">
-                        <div class="card__icon">
-                            <!-- Diamond/Premium -->
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="text-gold" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M6 3h12l4 6-10 13L2 9z"></path>
-                                <line x1="10" y1="22" x2="6" y2="9"></line>
-                                <line x1="14" y1="22" x2="18" y2="9"></line>
-                                <line x1="2" y1="9" x2="22" y2="9"></line>
-                            </svg>
-                        </div>
-                        <h3 class="card__title">Exclusividade</h3>
-                        <p class="card__text">Acesso a operações geralmente restritas a grandes players, agora democratizadas com gestão profissional.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção Como Funciona (Timeline) -->
-        <section class="section section--dark how-it-works" id="como-funciona">
-            <div class="container">
-                <div class="section-header text-center">
-                    <h2 class="section-title text-light">Como Funciona o Ciclo</h2>
-                    <p class="section-subtitle text-cream">Entenda a jornada do seu investimento, da aquisição à liquidação.</p>
+                <div class="operation-intro reveal-on-scroll">
+                    <p>Com experiência construída ao longo de gerações dentro da pecuária, a Arroba Capital nasceu para permitir que qualquer pessoa possa participar de um dos mercados mais tradicionais e sólidos do Brasil: o mercado do gado.</p>
+                    <p>Nossa proposta é simples: conectar investidores a uma operação pecuária real, conduzida por profissionais que vivem o dia a dia da fazenda.</p>
+                    <p>Aqui, o investimento está diretamente ligado à produção, manejo e comercialização de gado dentro de um sistema estruturado de confinamento.</p>
                 </div>
 
-                <div class="timeline">
-                    <!-- Item 1 -->
-                    <div class="timeline__item reveal-from-left">
-                        <div class="timeline__marker">1</div>
-                        <div class="timeline__content">
-                            <h3 class="timeline__title">Aquisição Estratégica</h3>
-                            <p>Compra de animais (boi magro) em momentos oportunos de mercado, visando o melhor preço de @ de entrada.</p>
+                <div class="operation-subsection">
+                    <h3 class="subsection-title">Como Funciona na Prática</h3>
+                    <div class="operation-steps">
+                        <div class="operation-step reveal-on-scroll">
+                            <div class="step-number">01</div>
+                            <div class="step-content">
+                                <p>Adquirimos lotes de gado Nelore selecionados, destinados à operação de confinamento.</p>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Item 2 -->
-                    <div class="timeline__item reveal-from-right">
-                        <div class="timeline__marker">2</div>
-                        <div class="timeline__content">
-                            <h3 class="timeline__title">Confinamento e Manejo</h3>
-                            <p>Engorda intensiva com nutrição balanceada e protocolo sanitário rigoroso para ganho de peso acelerado.</p>
+                        <div class="operation-step reveal-on-scroll delay-100">
+                            <div class="step-number">02</div>
+                            <div class="step-content">
+                                <p>Os animais recebem uma dieta nutricional específica, com acompanhamento técnico, permitindo a evolução de peso durante um ciclo médio de 60 a 90 dias.</p>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Item 3 -->
-                    <div class="timeline__item reveal-from-left">
-                        <div class="timeline__marker">3</div>
-                        <div class="timeline__content">
-                            <h3 class="timeline__title">Monitoramento Contínuo</h3>
-                            <p>Acompanhamento zootécnico e financeiro. Você recebe relatórios sobre a evolução do lote.</p>
-                        </div>
-                    </div>
-                    <!-- Item 4 -->
-                    <div class="timeline__item reveal-from-right">
-                        <div class="timeline__marker">4</div>
-                        <div class="timeline__content">
-                            <h3 class="timeline__title">Saída Programada</h3>
-                            <p>Negociação e venda para frigoríficos homologados e parceiros comerciais de grande porte.</p>
-                        </div>
-                    </div>
-                    <!-- Item 5 -->
-                    <div class="timeline__item reveal-from-left">
-                        <div class="timeline__marker">5</div>
-                        <div class="timeline__content">
-                            <h3 class="timeline__title">Fechamento do Ciclo</h3>
-                            <p>Apuração dos resultados, prestação de contas detalhada e retorno do capital conforme acordado.</p>
+                        <div class="operation-step reveal-on-scroll delay-200">
+                            <div class="step-number">03</div>
+                            <div class="step-content">
+                                <p>Após o período de engorda, os lotes são destinados ao abate em frigoríficos homologados, seguindo os padrões sanitários.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Seção Diferenciais -->
-        <section class="section differentials" id="diferenciais">
-            <div class="container">
-                <div class="section-header text-center">
-                    <h2 class="section-title">Nossos Diferenciais</h2>
-                    <p class="section-subtitle">Por que escolher a Arroba Capital para seus investimentos pecuários.</p>
-                </div>
-
-                <div class="grid grid--3 differentials__grid">
-                    <div class="info-block reveal-on-scroll">
-                        <div class="info-block__icon">
-                            <!-- Growth Chart -->
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="text-gold" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M18 20V10"></path>
-                                <path d="M12 20V4"></path>
-                                <path d="M6 20v-6"></path>
-                            </svg>
-                        </div>
-                        <h4>Gestão Especializada</h4>
-                        <p>Equipe com décadas de experiência no agronegócio e mercado financeiro.</p>
-                    </div>
-                    <div class="info-block reveal-on-scroll delay-100">
-                        <div class="info-block__icon">
-                            <!-- Transparency/Eye -->
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="text-gold" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                        </div>
-                        <h4>Transparência Total</h4>
-                        <p>Informação clara e audível sobre onde e como seu capital está alocado.</p>
-                    </div>
-                    <div class="info-block reveal-on-scroll delay-200">
-                        <div class="info-block__icon">
-                            <!-- Security/Shield -->
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="text-gold" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                        </div>
-                        <h4>Segurança Técnica</h4>
-                        <p>Protocolos sanitários e nutricionais que mitigam riscos biológicos.</p>
-                    </div>
-                    <div class="info-block reveal-on-scroll">
-                        <div class="info-block__icon">
-                            <!-- Communication -->
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="text-gold" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                            </svg>
-                        </div>
-                        <h4>Comunicação Ativa</h4>
-                        <p>Canal direto via WhatsApp e E-mail para atualizações constantes.</p>
-                    </div>
-                    <div class="info-block reveal-on-scroll delay-100">
-                        <div class="info-block__icon">
-                            <!-- Support/Handshake (Users representing connection) -->
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="text-gold" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                            </svg>
-                        </div>
-                        <h4>Suporte Consultivo</h4>
-                        <p>Não vendemos apenas cotas, oferecemos educação sobre o mercado.</p>
-                    </div>
-                    <div class="info-block reveal-on-scroll delay-200">
-                        <div class="info-block__icon">
-                            <!-- Execution/Gear -->
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="text-gold" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                            </svg>
-                        </div>
-                        <h4>Foco em Execução</h4>
-                        <p>Resultados baseados em performance real de campo, não em especulação.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção Métricas -->
-        <section class="section section--gold metrics" id="metricas">
-            <div class="container">
-                <div class="grid grid--4 metrics__grid">
-                    <div class="metric-item">
-                        <span class="metric-value" data-target="15">0</span>
-                        <span class="metric-label">Operações Acompanhadas</span>
-                    </div>
-                    <div class="metric-item">
-                        <span class="metric-value" data-target="250">0</span>
-                        <span class="metric-label">Investidores Atendidos</span>
-                    </div>
-                    <div class="metric-item">
-                        <span class="metric-value" data-target="40">0</span>
-                        <span class="metric-label">Rodadas Concluídas</span>
-                    </div>
-                    <div class="metric-item">
-                        <span class="metric-value" data-target="98">0</span><span class="metric-symbol">%</span>
-                        <span class="metric-label">Taxa de Recorrência</span>
-                    </div>
-                </div>
-                <p class="metrics__disclaimer text-center">* Dados ilustrativos para layout. Números auditados disponíveis no prospecto.</p>
-            </div>
-        </section>
-
-        <!-- Seção Transparência -->
-        <section class="section transparency" id="transparencia">
-            <div class="container transparency__container">
-                <div class="transparency__content reveal-from-left">
-                    <h2 class="section-title">O que você acompanha</h2>
-                    <p class="section-description">Acreditamos que a confiança se constrói com visibilidade. Durante o ciclo, você terá acesso a:</p>
-                    
+                <div class="transparency-block reveal-on-scroll">
+                    <h3 class="subsection-title">Transparência da Operação</h3>
+                    <p class="transparency-lead">Os investidores acompanham a operação através de:</p>
                     <ul class="checklist">
                         <li>
                             <svg class="check-icon" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg>
-                            Evolução de peso do lote (GMD - Ganho Médio Diário)
+                            Notas fiscais de compra e venda dos animais
                         </li>
                         <li>
                             <svg class="check-icon" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg>
-                            Marcos do ciclo (entrada, vacinação, pesagens)
+                            Relatórios de diagnóstico assinados por responsável técnico veterinário
                         </li>
                         <li>
                             <svg class="check-icon" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg>
-                            Relatórios fotográficos e vídeos dos animais
+                            Registros fotográficos e vídeos da operação
                         </li>
                         <li>
                             <svg class="check-icon" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg>
-                            Atualizações de mercado da arroba
+                            Atualizações ao longo do ciclo
                         </li>
                     </ul>
-                    
-                    <a href="#pre-inscricao" class="btn btn--outline mt-8">Ver exemplo de relatório</a>
                 </div>
-                <div class="transparency__image reveal-from-right">
-                   <div class="image-placeholder">
-                       <!-- Dashboard Mockup -->
-                       <div class="dashboard-mockup">
-                           <div class="dashboard-header">
-                               <div>
-                                   <div class="dashboard-date" id="current-cycle-date">Fev/2026 - Ciclo V</div>
-                                   <div class="dashboard-title">Painel Executivo</div>
-                               </div>
-                               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" color="#A68A45" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"></path><line x1="6" y1="9" x2="6" y2="9"></line><line x1="18" y1="9" x2="18" y2="9"></line></svg>
-                           </div>
-                           
-                           <div class="dashboard-grid">
-                               <div class="dash-card">
-                                   <span class="dash-label">GMD (Ganho Médio)</span>
-                                   <span class="dash-value">1.62 kg</span>
-                                   <span class="dash-trend">
-                                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                                       +12% vs. meta
-                                   </span>
-                               </div>
-                               <div class="dash-card">
-                                   <span class="dash-label">Valorização @</span>
-                                   <span class="dash-value">R$ 295,00</span>
-                                   <span class="dash-trend">
-                                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                                       Acima da B3
-                                   </span>
-                               </div>
-                           </div>
-                           
-                           <div class="dashboard-main-chart">
-                               <span class="dash-label" style="display:block; margin-bottom:10px;">Evolução de Peso (Kg)</span>
-                               <svg class="chart-line" viewBox="0 0 300 100" preserveAspectRatio="none">
-                                    <defs>
-                                        <linearGradient id="gradientGold" x1="0" x2="0" y1="0" y2="1">
-                                            <stop offset="0%" stop-color="#C8A45A" stop-opacity="0.3"/>
-                                            <stop offset="100%" stop-color="#C8A45A" stop-opacity="0"/>
-                                        </linearGradient>
-                                    </defs>
-                                   <path class="chart-area" d="M0,80 Q50,70 100,60 T200,30 T300,10 V100 H0 Z"></path>
-                                   <path class="chart-path" d="M0,80 Q50,70 100,60 T200,30 T300,10" fill="none"></path>
-                                   
-                                   <!-- Data Points -->
-                                   <circle cx="0" cy="80" r="3" fill="#C8A45A"></circle>
-                                   <circle cx="100" cy="60" r="3" fill="#C8A45A"></circle>
-                                   <circle cx="200" cy="30" r="3" fill="#C8A45A"></circle>
-                                   <circle cx="300" cy="10" r="3" fill="#fff" stroke="#C8A45A" stroke-width="2"></circle>
-                               </svg>
-                           </div>
-                       </div>
-                       <!-- Fim Mockup -->
-                   </div>
+
+                <div class="farm-visit reveal-on-scroll">
+                    <div class="farm-visit__icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gold">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                    <div class="farm-visit__content">
+                        <h3>Conheça a Operação de Perto</h3>
+                        <p>Além do acompanhamento remoto, o investidor pode visitar a fazenda e conhecer de perto toda a operação, observando na prática o funcionamento da atividade pecuária.</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-8">
+                    <a href="#pre-inscricao" class="btn btn--primary btn--lg">Quero mais informações</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Porta de Entrada / Brasil -->
+        <section class="section section--dark brazil-section" id="brasil">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title text-light">A Porta de Entrada para o Agronegócio</h2>
+                    <p class="section-subtitle" style="color: var(--text-muted);">A Arroba Capital nasceu da visão de que grandes oportunidades estão fora dos investimentos tradicionais e mais próximas daquilo que sustenta a economia de verdade.</p>
+                </div>
+
+                <div class="brazil-content">
+                    <div class="brazil-text reveal-from-left">
+                        <h3 class="text-light">O Brasil: uma potência mundial na produção de carne bovina</h3>
+                        <p class="text-cream">O Brasil ocupa hoje uma posição de destaque no agronegócio mundial, sendo o maior produtor e o maior exportador de carne bovina do planeta.</p>
+                        <p class="text-cream">Esse protagonismo é resultado da combinação entre território, clima, tecnologia e tradição pecuária construída ao longo de gerações.</p>
+                        <p class="text-cream">Com mais de 220 milhões de cabeças de gado, o país possui um dos maiores rebanhos bovinos do mundo — número superior à própria população brasileira.</p>
+                    </div>
+                    <div class="brazil-stats reveal-from-right">
+                        <div class="stat-item">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gold">
+                                <path d="M18 20V10M12 20V4M6 20v-6"></path>
+                            </svg>
+                            <span>Mais de 220 milhões de cabeças de gado no Brasil</span>
+                        </div>
+                        <div class="stat-item">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gold">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            <span>Maior exportador de carne bovina do mundo</span>
+                        </div>
+                        <div class="stat-item">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gold">
+                                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                            </svg>
+                            <span>Exportações para mais de 170 países</span>
+                        </div>
+                        <div class="stat-item">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gold">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                            <span>3,5 milhões de toneladas exportadas em 2025</span>
+                        </div>
+                        <div class="stat-item">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gold">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                            <span>US$ 18 bilhões em receita de exportação em 2025</span>
+                        </div>
+                        <div class="stat-item">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gold">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                            <span>Mais de 40 milhões de cabeças abatidas por ano</span>
+                        </div>
+                        <div class="stat-item">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gold">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            </svg>
+                            <span>Produção anual acima de 11 milhões de toneladas de carne</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Depoimentos -->
+        <section class="section testimonials-section" id="depoimentos">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">O que dizem os investidores</h2>
+                </div>
+                <div class="grid grid--3 testimonials__grid">
+                    <div class="testimonial-card reveal-on-scroll">
+                        <div class="testimonial-quote">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gold">
+                                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                                <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+                            </svg>
+                        </div>
+                        <p class="testimonial-text">Depoimento em breve.</p>
+                        <div class="testimonial-author">
+                            <span class="author-name">—</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card reveal-on-scroll delay-100">
+                        <div class="testimonial-quote">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gold">
+                                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                                <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+                            </svg>
+                        </div>
+                        <p class="testimonial-text">Depoimento em breve.</p>
+                        <div class="testimonial-author">
+                            <span class="author-name">—</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card reveal-on-scroll delay-200">
+                        <div class="testimonial-quote">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gold">
+                                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                                <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+                            </svg>
+                        </div>
+                        <p class="testimonial-text">Depoimento em breve.</p>
+                        <div class="testimonial-author">
+                            <span class="author-name">—</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Demanda Global -->
+        <section class="section section--light demand-section" id="demanda">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">A Demanda Global por Carne Continua Crescendo</h2>
+                </div>
+
+                <div class="demand-content reveal-on-scroll">
+                    <p>A população mundial continua aumentando, e com ela cresce também a necessidade de produção de alimentos.</p>
+                    <p>Segundo projeções internacionais da OCDE e FAO, o consumo global de carnes deve crescer quase 48 milhões de toneladas nas próximas décadas, impulsionado pelo aumento da renda e da demanda por proteína animal em países emergentes.</p>
+                    <p>Nesse cenário, o Brasil ocupa uma posição estratégica. O país já é o maior exportador de carne bovina do mundo e deve continuar ampliando sua presença internacional nos próximos anos.</p>
+                    <p>Estudos do setor indicam que as exportações brasileiras podem atingir mais de 4,3 milhões de toneladas até 2030, consolidando o país como um dos principais fornecedores globais de proteína animal.</p>
+                    <p>Esse crescimento ocorre porque poucos países possuem as condições naturais que o Brasil tem para produzir carne bovina em grande escala: território, clima favorável, disponibilidade de grãos e tradição pecuária.</p>
+                    <p>Por isso, a pecuária brasileira segue sendo um dos pilares mais sólidos do agronegócio e da produção de alimentos no mundo.</p>
+                    <blockquote class="demand-highlight">
+                        É dentro desse mercado global que nasce a proposta da Arroba Capital: permitir que investidores participem de ciclos reais da produção pecuária brasileira.
+                    </blockquote>
+                </div>
+
+                <div class="text-center mt-8">
+                    <a href="#pre-inscricao" class="btn btn--primary btn--lg">Participe do próximo ciclo</a>
                 </div>
             </div>
         </section>
@@ -490,8 +441,8 @@
             <div class="container">
                 <div class="form-wrapper">
                     <div class="form-header text-center">
-                        <h2 class="section-title text-gold">Pré-inscrição para Próxima Rodada</h2>
-                        <p class="text-light">Preencha seus dados para receber a lâmina técnica e garantir prioridade.</p>
+                        <h2 class="section-title text-gold">Participe do Próximo Ciclo</h2>
+                        <p class="text-light">Preencha seus dados para receber todas as informações e garantir sua vaga.</p>
                     </div>
 
                     <form id="leadForm" class="contact-form" novalidate>
@@ -578,7 +529,9 @@
     <footer class="footer">
         <div class="container footer__container">
             <div class="footer__brand">
-                <a href="#" class="footer__logo">ARROBA <span class="text-gold">CAPITAL</span></a>
+                <a href="#" class="footer__logo" aria-label="Arroba Capital - Inicio">
+                    <img src="logo.webp" alt="Arroba Capital" class="brand-logo brand-logo--footer">
+                </a>
                 <p>Inteligência e gestão no agronegócio brasileiro.</p>
                 <div class="social-links">
                     <a href="#" aria-label="Instagram">
@@ -594,8 +547,9 @@
                 <h4>Navegação</h4>
                 <ul>
                     <li><a href="#hero">Início</a></li>
-                    <li><a href="#como-funciona">Como Funciona</a></li>
-                    <li><a href="#diferenciais">Diferenciais</a></li>
+                    <li><a href="#operacao">Como Funciona</a></li>
+                    <li><a href="#brasil">O Mercado</a></li>
+                    <li><a href="#depoimentos">Depoimentos</a></li>
                     <li><a href="#faq">Dúvidas</a></li>
                 </ul>
             </div>

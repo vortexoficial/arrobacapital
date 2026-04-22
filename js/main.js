@@ -9,6 +9,80 @@ document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.header__link');
+    const navCta = document.querySelector('.header__cta');
+    const pageLoader = document.getElementById('page-loader');
+    const pageLoaderTotalDuration = 2000;
+    const pageLoaderFadeDuration = 500;
+    let pageLoaderHideTimer = null;
+
+    const hidePageLoader = () => {
+        if (!pageLoader || pageLoader.dataset.state === 'hidden') return;
+
+        if (pageLoaderHideTimer !== null) {
+            window.clearTimeout(pageLoaderHideTimer);
+            pageLoaderHideTimer = null;
+        }
+
+        pageLoader.dataset.state = 'hidden';
+        document.documentElement.classList.remove('has-loader');
+        pageLoader.setAttribute('aria-hidden', 'true');
+
+        window.setTimeout(() => {
+            pageLoader.setAttribute('hidden', '');
+        }, pageLoaderFadeDuration);
+    };
+
+    pageLoaderHideTimer = window.setTimeout(
+        hidePageLoader,
+        Math.max(0, pageLoaderTotalDuration - pageLoaderFadeDuration - performance.now())
+    );
+
+    let floatingViewportWidth = window.innerWidth;
+    let floatingViewportHeight = window.innerHeight;
+    let floatingUiFrame = null;
+    let lastViewportWidth = window.innerWidth;
+
+    const syncFloatingUI = () => {
+        floatingUiFrame = null;
+
+        const viewport = window.visualViewport;
+
+        if (!viewport) {
+            document.documentElement.style.setProperty('--floating-top-offset', '0px');
+            document.documentElement.style.setProperty('--floating-right-offset', '0px');
+            document.documentElement.style.setProperty('--floating-bottom-offset', '0px');
+            return;
+        }
+
+        floatingViewportWidth = Math.max(floatingViewportWidth, window.innerWidth, viewport.width + viewport.offsetLeft);
+        floatingViewportHeight = Math.max(floatingViewportHeight, window.innerHeight, viewport.height + viewport.offsetTop);
+
+        const topOffset = Math.max(0, viewport.offsetTop);
+        const rightOffset = Math.max(0, floatingViewportWidth - (viewport.width + viewport.offsetLeft));
+        const bottomOffset = Math.max(0, floatingViewportHeight - (viewport.height + viewport.offsetTop));
+
+        document.documentElement.style.setProperty('--floating-top-offset', `${Math.round(topOffset)}px`);
+        document.documentElement.style.setProperty('--floating-right-offset', `${Math.round(rightOffset)}px`);
+        document.documentElement.style.setProperty('--floating-bottom-offset', `${Math.round(bottomOffset)}px`);
+    };
+
+    const requestFloatingUISync = (resetBounds = false) => {
+        if (resetBounds) {
+            floatingViewportWidth = window.innerWidth;
+            floatingViewportHeight = window.innerHeight;
+        }
+
+        if (floatingUiFrame !== null) return;
+
+        floatingUiFrame = window.requestAnimationFrame(syncFloatingUI);
+    };
+
+    requestFloatingUISync(true);
+
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', () => requestFloatingUISync());
+        window.visualViewport.addEventListener('scroll', () => requestFloatingUISync());
+    }
 
     // Sticky Header
     window.addEventListener('scroll', () => {
@@ -19,36 +93,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    const setMobileMenuState = (isOpen) => {
+        navMenu.classList.toggle('active', isOpen);
+        navToggle.classList.toggle('active', isOpen);
+        document.documentElement.classList.toggle('menu-open', isOpen);
+    };
+
     // Mobile Menu Toggle
     navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        navToggle.classList.toggle('active');
-        
-        // Change toggle icon
-        const spans = navToggle.querySelectorAll('span');
-        if (navMenu.classList.contains('active')) {
-             spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-             spans[1].style.opacity = '0';
-             spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-        } else {
-             spans[0].style.transform = 'none';
-             spans[1].style.opacity = '1';
-             spans[2].style.transform = 'none';
-        }
+        setMobileMenuState(!navMenu.classList.contains('active'));
     });
 
     // Close mobile menu on link click
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            navToggle.classList.remove('active');
-            
-            // Reset icon
-            const spans = navToggle.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
+            setMobileMenuState(false);
         });
+    });
+
+    if (navCta) {
+        navCta.addEventListener('click', () => {
+            setMobileMenuState(false);
+        });
+    }
+
+    window.addEventListener('resize', () => {
+        const widthChanged = Math.abs(window.innerWidth - lastViewportWidth) > 2;
+
+        lastViewportWidth = window.innerWidth;
+        requestFloatingUISync(widthChanged);
+
+        if (window.innerWidth > 900 && navMenu.classList.contains('active')) {
+            setMobileMenuState(false);
+        }
     });
 
     // Smooth Scroll
