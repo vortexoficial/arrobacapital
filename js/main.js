@@ -1,6 +1,9 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
 
     /* ======================================================================
        1. HEADER & NAVIGATION
@@ -243,89 +246,99 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* ======================================================================
-       6. FORM VALIDATION & SUBMIT SIMULATION
-       ====================================================================== */
-    const form = document.getElementById('leadForm');
-    
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            let isValid = true;
-            
-            // Simple validation
-            const inputs = form.querySelectorAll('input[required], select[required]');
-            inputs.forEach(input => {
-                
-                if (!input.value || (input.type === 'checkbox' && !input.checked)) {
-                    // Logic to find the closest .form-group
-                    const fGroup = input.closest('.form-group');
-                    fGroup.classList.add('error');
-                    isValid = false;
-                    
-                    // Remove error on input
-                    input.addEventListener('input', () => {
-                        fGroup.classList.remove('error');
-                    }, { once: true });
-                }
+    const fieldVisitVideos = document.querySelectorAll('[data-field-visit-video]');
+
+    fieldVisitVideos.forEach((player) => {
+        const video = player.querySelector('.field-visit-video__media');
+        const playButton = player.querySelector('.field-visit-video__play');
+        const section = player.closest('.field-visit-band');
+        let isSectionVisible = true;
+
+        if (!video || !playButton) return;
+
+        const playMutedPreviewIfVisible = () => {
+            if (!isSectionVisible) return;
+
+            const previewPlayback = video.play();
+
+            if (previewPlayback && typeof previewPlayback.catch === 'function') {
+                previewPlayback.catch(() => {});
+            }
+        };
+
+        const startMutedPreview = () => {
+            video.pause();
+
+            try {
+                video.currentTime = 0;
+            } catch (error) {
+                // Some browsers can briefly reject seeking before metadata is ready.
+            }
+
+            video.muted = true;
+            video.defaultMuted = true;
+            video.loop = true;
+            video.controls = false;
+            player.dataset.playState = 'preview';
+            player.classList.remove('is-active');
+            playMutedPreviewIfVisible();
+        };
+
+        const startWithAudio = () => {
+            video.pause();
+
+            try {
+                video.currentTime = 0;
+            } catch (error) {
+                // Ignore transient seek errors and still try to play from the start.
+            }
+
+            video.defaultMuted = false;
+            video.muted = false;
+            video.loop = false;
+            video.controls = true;
+            player.dataset.playState = 'active';
+            player.classList.add('is-active');
+
+            const fullPlayback = video.play();
+
+            if (fullPlayback && typeof fullPlayback.catch === 'function') {
+                fullPlayback.catch(() => {
+                    startMutedPreview();
+                });
+            }
+        };
+
+        playButton.addEventListener('click', startWithAudio);
+        video.addEventListener('ended', startMutedPreview);
+
+        if (section) {
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    isSectionVisible = entry.isIntersecting && entry.intersectionRatio > 0.22;
+
+                    if (!isSectionVisible) {
+                        video.pause();
+                        return;
+                    }
+
+                    if (player.dataset.playState === 'preview' && video.paused) {
+                        playMutedPreviewIfVisible();
+                    }
+                });
+            }, {
+                threshold: [0, 0.22, 0.5]
             });
 
-            if (isValid) {
-                const btn = form.querySelector('button[type="submit"]');
-                const btnText = btn.querySelector('.btn-text');
-                const loader = btn.querySelector('.loader');
-                const successMsg = document.querySelector('.success-msg');
-
-                // Loading State
-                btnText.style.display = 'none';
-                loader.style.display = 'block';
-                btn.disabled = true;
-
-                // Simulate API call
-                setTimeout(() => {
-                    // Success State
-                    form.reset();
-                    loader.style.display = 'none';
-                    btnText.style.display = 'block';
-                    btn.disabled = false; // Reset button generally, but we hide form
-                    
-                    // Hide form fields, show success message
-                    Array.from(form.children).forEach(child => {
-                        if (!child.classList.contains('success-msg')) {
-                            child.style.display = 'none';
-                        }
-                    });
-                    
-                    successMsg.removeAttribute('hidden');
-                    successMsg.style.display = 'block';
-                    
-                }, 2000);
-            }
-        });
-        
-        // Add functionality to reset form (Nova Inscrição button)
-        // Check if there is already a reset button, if not add it
-        const successBlock = document.querySelector('.success-msg');
-        if (successBlock) {
-             const resetBtn = document.createElement('button');
-             resetBtn.className = 'btn btn--outline mt-4';
-             resetBtn.textContent = 'Enviar Nova Inscrição';
-             resetBtn.style.marginTop = '1rem';
-             resetBtn.addEventListener('click', (e) => {
-                 e.preventDefault();
-                 // Show form fields
-                 Array.from(form.children).forEach(child => {
-                    if (!child.classList.contains('success-msg')) {
-                        child.style.display = ''; // Reset display style
-                    }
-                 });
-                 // Hide success msg
-                 successBlock.style.display = 'none';
-                 successBlock.setAttribute('hidden', '');
-             });
-             successBlock.appendChild(resetBtn);
+            sectionObserver.observe(section);
         }
-    }
+
+        if (video.readyState >= 2) {
+            startMutedPreview();
+        } else {
+            video.addEventListener('loadeddata', startMutedPreview, { once: true });
+        }
+    });
 
     /* ======================================================================
        7. DYNAMIC DATES (DASHBOARD)

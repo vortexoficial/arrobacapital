@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
     
     // Elements
     const form = document.getElementById('profile-form');

@@ -80,6 +80,19 @@ body {
 
 .text-gold { color: var(--gold-500); }
 
+.quiz-icon {
+    display: block;
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.quiz-icon--success {
+    width: 3.5rem;
+    height: 3.5rem;
+    stroke-width: 1.9;
+}
+
 .step-indicator {
     font-size: 0.9rem;
     color: var(--gold-400);
@@ -308,7 +321,7 @@ body {
 
 .checkbox-card input[type="checkbox"]:checked {
     background: linear-gradient(135deg, var(--gold-400) 0%, var(--gold-600) 100%);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M4 10l4 4 8-8' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"), linear-gradient(135deg, var(--gold-400) 0%, var(--gold-600) 100%);
+    background-image: url("../../icons/check.svg"), linear-gradient(135deg, var(--gold-400) 0%, var(--gold-600) 100%);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 12px 12px, 100% 100%;
@@ -341,9 +354,12 @@ body {
 }
 
 .btn {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
     padding: 14px 28px; /* Larger touch target */
     border-radius: 50px; /* Pill shape */
-    font-weight: 700;
+    font-weight: 800;
     cursor: pointer;
     font-family: var(--font-body);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -351,6 +367,40 @@ body {
     border: none;
     letter-spacing: 0.5px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    inset: -35% auto -35% -30%;
+    width: 38%;
+    border-radius: inherit;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.12) 20%,
+        rgba(255, 255, 255, 0.78) 50%,
+        rgba(255, 255, 255, 0.12) 80%,
+        transparent 100%
+    );
+    filter: blur(12px);
+    transform: skewX(-22deg) translateX(-240%);
+    transform-origin: left center;
+    animation: quizBtnLightSweep 3.2s ease-in-out infinite;
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+@keyframes quizBtnLightSweep {
+    0%,
+    18% {
+        transform: skewX(-22deg) translateX(-240%);
+    }
+
+    48%,
+    100% {
+        transform: skewX(-22deg) translateX(430%);
+    }
 }
 
 .btn:active {
@@ -365,7 +415,7 @@ body {
 .btn-secondary {
     background: transparent;
     color: var(--text-muted);
-    font-weight: 600;
+    font-weight: 800;
     box-shadow: none;
     padding-left: 0; /* Align left */
 }
